@@ -34,7 +34,7 @@ function onSearch(event) {
           position: 'center',
           backgroundColor: 'rgba(239, 64, 64, 1)',
           messageColor: 'rgba(250, 250, 251, 1)',
-          iconUrl: './img/octagon.png',
+          iconUrl: './img/octagon.svg',
           messageSize: '16',
           messageLineHeight: '24',
         });
