@@ -34,7 +34,7 @@ function onSearch(event) {
           position: 'center',
           backgroundColor: 'rgba(239, 64, 64, 1)',
           messageColor: 'rgba(250, 250, 251, 1)',
-          iconUrl: './img/octagon.svg',
+          // iconUrl: './img/octagon.svg', don`t work after deploy
           messageSize: '16',
           messageLineHeight: '24',
         });
