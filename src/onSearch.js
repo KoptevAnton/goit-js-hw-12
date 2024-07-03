@@ -1,14 +1,10 @@
-import './css/styles.scss';
 import iziToast from 'izitoast';
 import SimpleLightbox from 'simplelightbox';
 import fetchPhotos from './js/pixabay-api';
 import createMarkup from './js/render-functions';
+import { galleryEl, loaderEl } from './main';
 
-const galleryEl = document.querySelector('.gallery');
-const searchFormEl = document.querySelector('.search-form');
-const loaderEl = document.querySelector('.loader');
-
-function onSearch(event) {
+export function onSearch(event) {
   event.preventDefault();
   const searchQuery = event.target.elements.searchKeyword.value.trim();
   galleryEl.innerHTML = '';
@@ -39,7 +35,6 @@ function onSearch(event) {
           messageLineHeight: '24',
         });
       }
-
       galleryEl.innerHTML = createMarkup(imagesData.hits);
       const lightbox = new SimpleLightbox('.gallery a', {
         captionsData: 'alt',
@@ -53,5 +48,3 @@ function onSearch(event) {
       loaderEl.classList.add('is-hidden');
     });
 }
-
-searchFormEl.addEventListener('submit', onSearch);

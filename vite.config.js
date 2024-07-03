@@ -27,4 +27,13 @@ export default defineConfig(({ command }) => {
     },
     plugins: [injectHTML(), FullReload(['./src/**/**.html'])],
   };
+},
+{
+  css: {
+    preprocessorOptions: {
+      scss: {
+        additionalData: `@import "./src/styles/variables.scss";` // приклад глобальних змінних
+      }
+    }
+  }
 });
