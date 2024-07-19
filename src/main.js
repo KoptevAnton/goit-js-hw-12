@@ -13,7 +13,6 @@ const params = {
   maxPage: 0,
 };
 
-loaderEl.classList.add('is-hidden');
 loadMoreEl.classList.add('is-hidden');
 let lightbox = null;
 
