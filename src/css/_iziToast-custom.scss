@@ -6,12 +6,12 @@
     top: 50%;
     right: 18px;
     transform: translate(0%, -50%);
+    width: 16px;
+    height: 16px;
     opacity: 1;
     background: url(../img/close.svg);
     background-repeat: no-repeat;
     background-position: center;
-    width: 16px;
-    height: 16px;
     transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
   }
   & > &-close:hover {
@@ -21,9 +21,9 @@
     background: rgba(0, 0, 0, 0.5);
   }
   & > &-body &-message {
-    font: inherit;
-    width: 322px;
     margin: 0;
+    width: 322px;
+    font: inherit;
   }
   & > &-body &-texts {
     margin: 0;

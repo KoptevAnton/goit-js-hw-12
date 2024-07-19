@@ -1,17 +1,9 @@
 .loader {
+  @extend %absolutely-centered;
+  border-radius: 100px 100px 0 0;
   width: 160px;
   height: 185px;
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
   background: $primary-color;
-  border-radius: 100px 100px 0 0;
-  &.is-hidden {
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
-  }
   &:after {
     content: '';
     position: absolute;
@@ -33,7 +25,7 @@
       50px 25px, 70px 70px, 70px 70px;
     background-position: 25px 10px, 55px 10px, 36px 44px, 50% 30px, 50% 85px,
       50% 50px, 50% 22px, 50% 45px;
-    animation: faceLift 3s linear infinite alternate;
+    animation: faceLift 3s linear infinite alternate; 
   }
   &:before {
     content: '';
