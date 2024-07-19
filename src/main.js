@@ -77,7 +77,6 @@ async function onLoadMore() {
   params.page += 1;
   try {
     const imagesData = await fetchPhotos(params);
-    console.log(imagesData);
 
     galleryEl.insertAdjacentHTML('beforeend', createMarkup(imagesData.hits));
     const cardHeight = galleryEl
