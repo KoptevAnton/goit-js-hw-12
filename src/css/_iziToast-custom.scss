@@ -22,8 +22,11 @@
   }
   & > &-body &-message {
     margin: 0;
-    width: 322px;
+    width: 272px;
     font: inherit;
+    @media (min-width: 480px) {
+      width: 322px;
+    }
   }
   & > &-body &-texts {
     margin: 0;
