@@ -13,7 +13,6 @@ const params = {
   maxPage: 0,
 };
 
-loadMoreEl.classList.add('is-hidden');
 let lightbox = null;
 
 searchFormEl.addEventListener('submit', onSearch);
@@ -31,7 +30,6 @@ async function onSearch(event) {
       position: 'center',
       backgroundColor: 'rgba(239, 64, 64, 1)',
       messageColor: 'rgba(250, 250, 251, 1)',
-      // iconUrl: './img/octagon.svg', don`t work after deploy
       messageSize: '16',
       messageLineHeight: '24',
     });
@@ -48,28 +46,36 @@ async function onSearch(event) {
         position: 'center',
         backgroundColor: 'rgba(239, 64, 64, 1)',
         messageColor: 'rgba(250, 250, 251, 1)',
-        // iconUrl: './img/octagon.svg', don`t work after deploy
         messageSize: '16',
         messageLineHeight: '24',
       });
     }
 
+    if (!Array.isArray(imagesData.hits)) {
+      throw new Error('Unexpected data format from API');
+    }
+
     galleryEl.insertAdjacentHTML('beforeend', createMarkup(imagesData.hits));
 
-    lightbox = new SimpleLightbox('.gallery a', {
-      captionsData: 'alt',
-      captionDelay: 250,
-    });
-    lightbox.refresh();
+    if (!lightbox) {
+      lightbox = new SimpleLightbox('.gallery a', {
+        captionsData: 'alt',
+        captionDelay: 250,
+      });
+    } else {
+      lightbox.refresh();
+    }
+
+    if (params.page < params.maxPage) {
+      loadMoreEl.classList.remove('is-hidden');
+      loadMoreEl.addEventListener('click', onLoadMore);
+    }
   } catch (err) {
     console.log(err);
   } finally {
     loaderEl.classList.add('is-hidden');
     event.target.reset();
   }
-
-  loadMoreEl.classList.remove('is-hidden');
-  loadMoreEl.addEventListener('click', onLoadMore);
 }
 
 async function onLoadMore() {
@@ -87,15 +93,9 @@ async function onLoadMore() {
       behavior: 'smooth',
     });
 
-    lightbox = new SimpleLightbox('.gallery a', {
-      captionsData: 'alt',
-      captionDelay: 250,
-    });
     lightbox.refresh();
-  } catch (err) {
-    throw new Error('Sorry, something went wrong with the API request.');
-  } finally {
-    if (params.page === params.maxPage) {
+
+    if (params.page >= params.maxPage) {
       loadMoreEl.classList.add('is-hidden');
       loadMoreEl.removeEventListener('click', onLoadMore);
       iziToast.error({
@@ -103,10 +103,11 @@ async function onLoadMore() {
         position: 'center',
         backgroundColor: 'rgba(239, 64, 64, 1)',
         messageColor: 'rgba(250, 250, 251, 1)',
-        // iconUrl: './img/octagon.svg', don`t work after deploy
         messageSize: '16',
         messageLineHeight: '24',
       });
     }
+  } catch (err) {
+    throw new Error('Sorry, something went wrong with the API request.');
   }
 }
