@@ -9,7 +9,7 @@ const { galleryEl, searchFormEl, loaderEl, loadMoreEl } = refs;
 const params = {
   q: '',
   page: 1,
-  pageSize: 9,
+  pageSize: 15,
   maxPage: 0,
 };
 
